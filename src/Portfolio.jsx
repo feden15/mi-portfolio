@@ -7,8 +7,7 @@ const Portfolio = () => {
   
         {/* NAVEGACIÓN */}
         <nav className="bg-white shadow-md fixed w-full top-0 left-0 py-4 px-6 flex justify-between items-center z-10">
-
-          <h1 className="text-xl font-bold">Mi Portafolio</h1>
+          <h1 className="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500 font-bold">Mi Portafolio</h1>
           
           <ul className="flex space-x-6">
             <li><a  className="hover:text-blue-500 transition-colors">Inicio</a></li>
@@ -17,8 +16,13 @@ const Portfolio = () => {
             <li><a  className="hover:text-blue-500 transition-colors">Habilidades</a></li>
             <li><a  className="hover:text-blue-500 transition-colors">Contacto</a></li>
           </ul>
-
         </nav>
+
+        {/* INICIO */}
+        <section className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-teal-500 text-white text-center p-8">
+          <h1 className="text-4xl font-bold">Federico Nova</h1>
+          <p className="text-lg mt-2 font-light">Desarrollador Web | React | JavaScript | Tailwind</p>
+        </section>
         
       </div>
     );
