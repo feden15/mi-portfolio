@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import './index.css';
 import { motion } from "framer-motion";
 
 const Portfolio = () => {
 
-  const handleNavClick = (sectionId) => { /* cuando haga clic en algún li del nav, se me moverá a la sección correspondiente */
-        
+  const [showSections, setShowSections] = useState(false)
+
+  const handleNavClick = (sectionId) => {
+    setShowSections(true)
     const section = document.getElementById(sectionId);
     if (section) {
-      section.classList.add("bg-gray-100");
-      setTimeout(() => section.classList.remove("bg-gray-100"), 500);
+      section.scrollIntoView({ behavior: "smooth" });
     };
     
   }
@@ -22,7 +23,7 @@ const Portfolio = () => {
         <h2 className="text-2xl text-gradient-blue-to-teal font-bold">Mi Portafolio</h2>
         
         <ul className="flex space-x-6">
-        <li><a href="#inicio" onClick={() => handleNavClick("inicio")} className="hover:text-blue-500 cursor-pointer transition-colors">Inicio</a></li>
+        <li><a href="#inicio" onClick={() => setShowSections(false)} className="hover:text-blue-500 cursor-pointer transition-colors">Inicio</a></li>
           <li><a href="#sobre-mi" onClick={() => handleNavClick("sobre-mi")} className="hover:text-blue-500 cursor-pointer transition-colors">Sobre mí</a></li>
           <li><a href="#proyectos" onClick={() => handleNavClick("proyectos")} className="hover:text-blue-500 cursor-pointer transition-colors">Proyectos</a></li>
           <li><a href="#habilidades" onClick={() => handleNavClick("habilidades")} className="hover:text-blue-500 cursor-pointer transition-colors">Habilidades</a></li>
@@ -33,7 +34,9 @@ const Portfolio = () => {
       {/* INICIO */}
       <section
         id="inicio"
-        className="h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8"
+        className={`h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8 ${
+          showSections ? "hidden" : "flex"
+        }`}
       >
         <motion.div 
           className="flex flex-col items-center"
@@ -57,58 +60,61 @@ const Portfolio = () => {
         </motion.div>
       </section>
 
-      {/* SOBRE MI */}
-      <section 
-        id="sobre-mi"
-        className="py-20 px-4 text-center"
-      >
-          <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Sobre mí</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-gray-700">Acá va info sobre mí</p>
-      </section>
+      {showSections && ( /* se mostrarán cuando se haga clic en un li del nav correspondiente a las secciones */
+        <>
+          {/* SOBRE MI */}
+          <section 
+            id="sobre-mi"
+            className="py-20 px-4 text-center"
+          >
+              <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Sobre mí</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-gray-700">Acá va info sobre mí</p>
+          </section>
 
-      {/* PROYECTOS */}
-      <section
-        id="proyectos"
-        className="py-20 px-4 text-center "
-      >
+          {/* PROYECTOS */}
+          <section
+            id="proyectos"
+            className="py-20 px-4 text-center "
+          >
+            <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Proyectos</h2>
 
-        <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Proyectos</h2>
+            {/* Tarjetas de proyectos */}
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 1</h3>
+                <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
+              </div>
+              <div className="bg-white shadow-lg rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 2</h3>
+                <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
+              </div>
+              <div className="bg-white shadow-xl rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 3</h3>
+                <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
+              </div>
+            </div>
 
-        {/* Tarjetas de proyectos */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white shadow-lg rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 1</h3>
-            <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
-          </div>
-          <div className="bg-white shadow-lg rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 2</h3>
-            <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
-          </div>
-          <div className="bg-white shadow-xl rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 3</h3>
-            <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
-          </div>
-        </div>
+          </section> {/* /proyectos */}
 
-      </section> {/* /proyectos */}
+          {/* HABILIDADES */}
+          <section
+            id="habilidades"
+            className="py-20 px-4 text-center"
+          >
+            <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Habilidades</h2>
+            <p className="mt-4 text-gray-700">Detallar habilidades</p>
+          </section>
 
-      {/* HABILIDADES */}
-      <section
-        id="habilidades"
-        className="py-20 px-4 text-center"
-      >
-        <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Habilidades</h2>
-        <p className="mt-4 text-gray-700">Detallar habilidades</p>
-      </section>
-
-      {/* CONTACTO */}
-      <section
-        id="contacto"
-        className="py-20 px-4 text-center"
-      >
-        <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Contacto</h2>
-        <p className="mt-4 text-gray-700">Linkedin | Correo electrónico | Wpp</p>
-      </section>
+          {/* CONTACTO */}
+          <section
+            id="contacto"
+            className="py-20 px-4 text-center"
+          >
+            <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Contacto</h2>
+            <p className="mt-4 text-gray-700">Linkedin | Correo electrónico | Wpp</p>
+          </section>
+        </>
+      )};
       
     </div>
   );
