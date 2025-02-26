@@ -23,6 +23,12 @@ const Portfolio = () => {
           <h1 className="text-4xl font-bold">Federico Nova</h1>
           <p className="text-lg mt-2 font-light">Desarrollador Web | React | JavaScript | Tailwind</p>
         </section>
+
+        {/* SOBRE MI */}
+        <section className="py-20 px-4 text-center">
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">Sobre mí</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-gray-700">Acá va info sobre mí</p>
+        </section>
         
       </div>
     );
