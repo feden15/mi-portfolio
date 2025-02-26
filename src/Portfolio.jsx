@@ -1,5 +1,6 @@
 import React from "react";
 import './index.css';
+import { motion } from "framer-motion";
 
 const Portfolio = () => {
   
@@ -8,7 +9,7 @@ const Portfolio = () => {
   
         {/* NAVEGACIÓN */}
         <nav className="bg-white shadow-md fixed w-full top-0 left-0 py-4 px-6 flex justify-between items-center z-10">
-          <h1 className="text-2xl text-gradient-blue-to-teal font-bold">Mi Portafolio</h1>
+          <h2 className="text-2xl text-gradient-blue-to-teal font-bold">Mi Portafolio</h2>
           
           <ul className="flex space-x-6">
             <li><a  className="hover:text-blue-500 cursor-pointer transition-colors">Inicio</a></li>
@@ -21,8 +22,26 @@ const Portfolio = () => {
 
         {/* INICIO */}
         <section className="h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8">
-          <h1 className="text-4xl font-bold">Federico Nova</h1>
-          <p className="text-lg mt-2 font-light">Desarrollador Web | React | JavaScript | Tailwind</p>
+          <motion.div 
+            className="flex flex-col items-center"
+            initial={{ y: -700, opacity: -2 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+          >
+
+            <motion.img
+              src="../public/imgs/foto-perfil.webp"
+              alt="Perfil estilo avatar"
+              className="w-65 h-65 mt-4 mb-4 rounded-full border-3 border-white shadow-lg"
+              transition={{ duration: 2, ease: "easeOut" }}
+              whileHover={{ scale: 1.1 }}
+
+            />
+
+            <h1 className="text-4xl font-bold">Federico Nova</h1>
+            <p className="text-lg mt-2 font-light">Desarrollador Web | React | JavaScript | Tailwind</p>
+
+          </motion.div>
         </section>
 
         {/* SOBRE MI */}
