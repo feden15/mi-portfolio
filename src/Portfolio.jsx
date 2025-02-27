@@ -1,22 +1,45 @@
 import React, { useState } from "react";
 import './index.css';
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const Portfolio = () => {
 
   const [showSections, setShowSections] = useState(false)
-
+  
   const handleNavClick = (sectionId) => {
-    setShowSections(true)
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    };
     
-  }
+    debugger
+    
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      console.log(sectionId);
+      const sectionTop = section.offsetTop; // Obtén la posición vertical de la sección
+      let currentPosition = window.scrollY; // Obtén la posición actual del scroll
+  
+      const scrollDistance = sectionTop - currentPosition; // Distancia de desplazamiento
+      const duration = 2000; // Duración en ms (2 segundos)
+      const step = 10; // Intervalo de tiempo para mover el scroll
+      const steps = duration / step; // Número total de pasos para el desplazamiento
+      let stepCount = 0;
+  
+      const scrollInterval = setInterval(() => {
+        const scrollAmount = (scrollDistance / steps) * stepCount;
+        window.scrollTo(0, currentPosition + scrollAmount);
+        stepCount++;
+  
+        if (stepCount >= steps) {
+          clearInterval(scrollInterval); // Detener el intervalo cuando termine el desplazamiento
+        }
+      }, step);
+    }
+    setShowSections(true);
+  };
   
   return (
-    <div className="min-h-scree text-gray-900">
+    <div className="min-h-screen text-gray-900">
 
       {/* NAVEGACIÓN */}
       <nav className="bg-white shadow-md fixed w-full top-0 left-0 py-4 px-6 flex justify-between items-center z-10">
@@ -33,11 +56,9 @@ const Portfolio = () => {
 
       {/* INICIO */}
       <section
-        id="inicio"
-        className={`h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8 ${
-          showSections ? "hidden" : "flex"
-        }`}
+        className={`h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8 ${showSections ? "hidden" : "flex"}`}
       >
+
         <motion.div 
           className="flex flex-col items-center"
           initial={{ y: -700, opacity: -2 }}
@@ -56,6 +77,18 @@ const Portfolio = () => {
 
           <h1 className="text-4xl font-bold">Federico Nova</h1>
           <p className="text-lg mt-2 font-light">Desarrollador Web | React | JavaScript | Tailwind</p>
+
+          <button
+            onClick={handleNavClick}
+            className="w-full h-17 bg-transparent-arrow absolute bottom-0 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          >
+            <FontAwesomeIcon
+              icon={faArrowDown}
+              size="2x"
+              className="text-white"
+              beat
+            />
+          </button>
 
         </motion.div>
       </section>
@@ -114,7 +147,7 @@ const Portfolio = () => {
             <p className="mt-4 text-gray-700">Linkedin | Correo electrónico | Wpp</p>
           </section>
         </>
-      )};
+      )}
       
     </div>
   );

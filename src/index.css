@@ -7,3 +7,7 @@
 .bg-gradient-blue-to-teal {
     @apply bg-gradient-to-r from-blue-500 to-teal-500;
 }
+
+.bg-transparent-arrow {
+    @apply bg-gradient-to-b from-transparent to-black opacity-60
+}
