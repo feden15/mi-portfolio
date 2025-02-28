@@ -1,8 +1,11 @@
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
+import useTitulo from "../hooks/useTitulo";
 
 const Inicio = ({ setShowSections  }) => {
+
+    useTitulo('Inicio')
 
     return (
         <AnimatePresence>

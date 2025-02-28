@@ -1,5 +1,8 @@
+import useTitulo from "../hooks/useTitulo"
 
 const Habilidades = () => {
+
+    useTitulo('Habilidades')
 
     return (
 

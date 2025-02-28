@@ -1,8 +1,11 @@
+import useTitulo from "../hooks/useTitulo"
 
 const Proyectos = () => {
 
+    useTitulo('Proyectros')
+
     return (
-        
+
         <section
             id="proyectos"
             className="py-20 px-4 text-center "

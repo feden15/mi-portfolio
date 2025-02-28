@@ -1,8 +1,11 @@
+import useTitulo from "../hooks/useTitulo"
 
 const Contacto = () => {
 
+    useTitulo('Contacto')
+
     return (
-        
+
         <section
             id="contacto"
             className="py-20 px-4 text-center"
