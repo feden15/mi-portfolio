@@ -1,41 +1,18 @@
-import React, { useState } from "react";
-import './index.css';
+import React, { useState, useRef, useEffect  } from "react";
+import '../index.css';
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import Inicio from "./Inicio";
 
 const Portfolio = () => {
 
   const [showSections, setShowSections] = useState(false)
   
-  const handleNavClick = (sectionId) => {
-    
-    debugger
-    
-    const section = document.getElementById(sectionId);
+  const handleSection = (shouldShow) => {
 
-    if (section) {
-      console.log(sectionId);
-      const sectionTop = section.offsetTop; // Obtén la posición vertical de la sección
-      let currentPosition = window.scrollY; // Obtén la posición actual del scroll
-  
-      const scrollDistance = sectionTop - currentPosition; // Distancia de desplazamiento
-      const duration = 2000; // Duración en ms (2 segundos)
-      const step = 10; // Intervalo de tiempo para mover el scroll
-      const steps = duration / step; // Número total de pasos para el desplazamiento
-      let stepCount = 0;
-  
-      const scrollInterval = setInterval(() => {
-        const scrollAmount = (scrollDistance / steps) * stepCount;
-        window.scrollTo(0, currentPosition + scrollAmount);
-        stepCount++;
-  
-        if (stepCount >= steps) {
-          clearInterval(scrollInterval); // Detener el intervalo cuando termine el desplazamiento
-        }
-      }, step);
-    }
-    setShowSections(true);
+    setShowSections(shouldShow)
+    
   };
   
   return (
@@ -46,57 +23,45 @@ const Portfolio = () => {
         <h2 className="text-2xl text-gradient-blue-to-teal font-bold">Mi Portafolio</h2>
         
         <ul className="flex space-x-6">
-        <li><a href="#inicio" onClick={() => setShowSections(false)} className="hover:text-blue-500 cursor-pointer transition-colors">Inicio</a></li>
-          <li><a href="#sobre-mi" onClick={() => handleNavClick("sobre-mi")} className="hover:text-blue-500 cursor-pointer transition-colors">Sobre mí</a></li>
-          <li><a href="#proyectos" onClick={() => handleNavClick("proyectos")} className="hover:text-blue-500 cursor-pointer transition-colors">Proyectos</a></li>
-          <li><a href="#habilidades" onClick={() => handleNavClick("habilidades")} className="hover:text-blue-500 cursor-pointer transition-colors">Habilidades</a></li>
-          <li><a href="#contacto" onClick={() => handleNavClick("contacto")} className="hover:text-blue-500 cursor-pointer transition-colors">Contacto</a></li>
+          <li>
+            <a
+              href="inicio"
+              onClick={() => handleSection(false)}
+              className="hover:text-blue-500 cursor-pointer transition-colors">Inicio</a>
+          </li>
         </ul>
       </nav>
 
       {/* INICIO */}
       <section
+        id="inicio"
         className={`h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8 ${showSections ? "hidden" : "flex"}`}
       >
-
-        <motion.div 
-          className="flex flex-col items-center"
-          initial={{ y: -700, opacity: -2 }}
+        
+        <Inicio/>
+        
+        <motion.button
+          onClick={() => handleSection(true)}
+          className="w-full h-17 bg-transparent-arrow absolute bottom-0 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          initial={{ y: 0, opacity: -20 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          aria-label="Mostrar secciones"
         >
-
-          <motion.img
-            src="../public/imgs/foto-perfil.webp"
-            alt="Perfil estilo avatar"
-            className="w-65 h-65 mt-4 mb-4 rounded-full border-3 border-white shadow-lg"
-            transition={{ duration: 2, ease: "easeOut" }}
-            whileHover={{ scale: 1.1 }}
-
+          <FontAwesomeIcon
+            icon={faArrowDown}
+            size="2x"
+            className="text-white"
+            beat
           />
+        </motion.button>
 
-          <h1 className="text-4xl font-bold">Federico Nova</h1>
-          <p className="text-lg mt-2 font-light">Desarrollador Web | React | JavaScript | Tailwind</p>
-
-          <button
-            onClick={handleNavClick}
-            className="w-full h-17 bg-transparent-arrow absolute bottom-0 left-1/2 transform -translate-x-1/2 cursor-pointer"
-          >
-            <FontAwesomeIcon
-              icon={faArrowDown}
-              size="2x"
-              className="text-white"
-              beat
-            />
-          </button>
-
-        </motion.div>
       </section>
 
       {showSections && ( /* se mostrarán cuando se haga clic en un li del nav correspondiente a las secciones */
         <>
           {/* SOBRE MI */}
-          <section 
+          <section
             id="sobre-mi"
             className="py-20 px-4 text-center"
           >
