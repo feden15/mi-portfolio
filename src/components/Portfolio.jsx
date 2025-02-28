@@ -1,9 +1,16 @@
-import React, { useState, useRef, useEffect  } from "react";
+import React, { useState  } from "react";
 import '../index.css';
+
+import Inicio from "./Inicio";
+import SobreMi from "./SobreMi";
+import Proyectos from "./Proyectos";
+import Habilidades from "./Habilidades";
+import Contacto from "./Contacto";
+
+
 import { motion, AnimatePresence  } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import Inicio from "./Inicio";
 
 const Portfolio = () => {
 
@@ -32,124 +39,25 @@ const Portfolio = () => {
         </ul>
       </nav>
 
-      {/* INICIO */}
-      {/* <section
-        id="inicio"
-        className={`h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8 ${showSections ? "hidden" : "flex"}`}
-      >
-        
-        <Inicio/>
-        
-        <motion.button
-          onClick={() => handleSection(true)}
-          className="w-full h-17 bg-transparent-arrow absolute bottom-0 left-1/2 transform -translate-x-1/2 cursor-pointer"
-          initial={{ y: 0, opacity: -20 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          aria-label="Mostrar secciones"
-        >
-          <FontAwesomeIcon
-            icon={faArrowDown}
-            size="2x"
-            className="text-white"
-            beat
-          />
-        </motion.button>
+      {!showSections && (
 
-      </section> */}
+        <Inicio handleSection={handleSection}/>
+      
+      )}
 
-      <AnimatePresence>
-        {!showSections && (
-          <>
-            <motion.section
-              id="inicio"
-              className="h-screen flex flex-col justify-center items-center bg-gradient-blue-to-teal text-white text-center p-8"
-              initial={{ opacity: 0}}
-              animate={{ opacity: 1}}
-              exit={{ opacity: 0}}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <Inicio />
-              
-            </motion.section>
-            <button
-              onClick={() => handleSection(true)}
-              className="w-full h-17 bg-transparent-arrow absolute bottom-0 left-1/2 transform -translate-x-1/2 cursor-pointer"
-              aria-label="Mostrar secciones"
-            >
-              <FontAwesomeIcon
-                icon={faArrowDown}
-                size="2x"
-                className="text-white"
-                beatFade
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1}}
-                exit={{ opacity: 0}}
-              />
-            </button>
-          </>
-        )}
-      </AnimatePresence>
+      {showSections && (
+        <>
 
-        {showSections && (
-          <>
-            {/* SOBRE MI */}
-            <section
-              id="sobre-mi"
-              className="py-20 px-4 text-center"
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-                <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Sobre mí</h2>
-                <p className="mt-4 max-w-2xl mx-auto text-gray-700">Acá va info sobre mí</p>
-            </section>
+          <SobreMi/>
 
-            {/* PROYECTOS */}
-            <section
-              id="proyectos"
-              className="py-20 px-4 text-center "
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Proyectos</h2>
+          <Proyectos/>
 
-              {/* Tarjetas de proyectos */}
-              <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white shadow-lg rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 1</h3>
-                  <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
-                </div>
-                <div className="bg-white shadow-lg rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 2</h3>
-                  <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
-                </div>
-                <div className="bg-white shadow-xl rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-gradient-blue-to-teal">Proyecto 3</h3>
-                  <p className="mt-2 text-gradient-blue-to-teal">Descripción del proyecto.</p>
-                </div>
-              </div>
+          <Habilidades/>
 
-            </section> {/* /proyectos */}
-
-            {/* HABILIDADES */}
-            <section
-              id="habilidades"
-              className="py-20 px-4 text-center"
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Habilidades</h2>
-              <p className="mt-4 text-gray-700">Detallar habilidades</p>
-            </section>
-
-            {/* CONTACTO */}
-            <section
-              id="contacto"
-              className="py-20 px-4 text-center"
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <h2 className="text-3xl font-bold text-gradient-blue-to-teal">Contacto</h2>
-              <p className="mt-4 text-gray-700">Linkedin | Correo electrónico | Wpp</p>
-            </section>
-          </>
-        )}
+          <Contacto/>
+          
+        </>
+      )}
       
     </div>
   );
