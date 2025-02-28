@@ -8,6 +8,7 @@ const Inicio = () => {
                 className="flex flex-col items-center"
                 initial={{ y: -700, opacity: -2 }}
                 animate={{ y: 0, opacity: 1 }}
+                exit={{ opacity: 0, y: -100 }}
                 transition={{ duration: 1, ease: "easeOut" }}
             >
 

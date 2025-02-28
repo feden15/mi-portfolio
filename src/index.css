@@ -9,5 +9,5 @@
 }
 
 .bg-transparent-arrow {
-    @apply bg-gradient-to-b from-transparent to-black opacity-60
+    @apply bg-gradient-to-b from-transparent to-gray-400
 }
