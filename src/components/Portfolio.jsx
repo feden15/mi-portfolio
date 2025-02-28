@@ -16,12 +16,6 @@ const Portfolio = () => {
 
   const [showSections, setShowSections] = useState(false)
   
-  const handleSection = (shouldShow) => {
-
-    setShowSections(shouldShow)
-    
-  };
-  
   return (
     <div className="min-h-screen text-gray-900">
 
@@ -33,7 +27,7 @@ const Portfolio = () => {
           <li>
             <a
               href="inicio"
-              onClick={() => handleSection(false)}
+              onClick={() => setShowSections(false)}
               className="hover:text-blue-500 cursor-pointer transition-colors">Inicio</a>
           </li>
         </ul>
@@ -41,7 +35,7 @@ const Portfolio = () => {
 
       {!showSections && (
 
-        <Inicio handleSection={handleSection}/>
+        <Inicio setShowSections={setShowSections}/>
       
       )}
 
