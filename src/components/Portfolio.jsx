@@ -6,6 +6,7 @@ import SobreMi from "./SobreMi";
 import Proyectos from "./Proyectos";
 import Habilidades from "./Habilidades";
 import Contacto from "./Contacto";
+import SectionsOcultas from "./SectionsOcultas";
 
 const Portfolio = () => {
 
@@ -35,17 +36,7 @@ const Portfolio = () => {
       )}
 
       {showSections && (
-        <>
-
-          <SobreMi/>
-
-          <Proyectos/>
-
-          <Habilidades/>
-
-          <Contacto/>
-          
-        </>
+        <SectionsOcultas/>
       )}
       
     </div>
